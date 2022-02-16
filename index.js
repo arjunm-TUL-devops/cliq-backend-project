@@ -1,6 +1,7 @@
 const express = require('express')
 const mongoose = require('mongoose')
 require('dotenv/config')
+const trackerRoutes = require('./routes/tracker')
 
 
 
@@ -13,9 +14,12 @@ mongoose.connect(process.env.DB_CONNECTION,()=>{
     console.log("Connected to Database Successfully!")
 })
 
+//Importing Routes
+app.use('/tracker',trackerRoutes);
+
 //Routes
 app.get('/', (req, res) => {
-  res.send('Hello World');
+  res.send('Home Page');
 });
 
 app.listen(PORT, () => {
