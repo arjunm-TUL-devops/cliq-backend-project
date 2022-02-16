@@ -1,5 +1,6 @@
 const express = require('express')
 const mongoose = require('mongoose')
+const bodyParser = require('body-parser')
 require('dotenv/config')
 const trackerRoutes = require('./routes/tracker')
 
@@ -8,6 +9,9 @@ const trackerRoutes = require('./routes/tracker')
 //Setting up the express server
 const app = express();
 const PORT = 8080;
+
+//Body Parser
+app.use(bodyParser.json())
 
 //Connecting to Database
 mongoose.connect(process.env.DB_CONNECTION,()=>{
