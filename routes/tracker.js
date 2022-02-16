@@ -12,11 +12,13 @@ router.post('/', async (req,res)=>{
         work: req.body.work
     })
 
-    project.save().then(data => {
-        res.json(data);
-    }).catch(err => {
-        res.json({message: err})
-    })
+    try{
+        const savedProject = await project.save()
+        res.json(savedProject)
+    }catch(err){
+        res.json(err)
+    }
+
 })
 
 module.exports = router;
