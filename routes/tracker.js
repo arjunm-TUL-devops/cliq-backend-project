@@ -40,13 +40,23 @@ router.get('/:id', async (req,res) => {
     }
 })
 
-//PATCH METHOD TO UPDATE THe STATUS OF TRACKER
+//PATCH METHOD TO UPDATE THE STATUS OF TRACKER
 router.patch('/:id', async (req,res) => {
     try {
         const project = await Project.updateOne(
             {_id: req.params.id},
             {$set: {status: req.body.status}}
             );
+        res.json(project)
+    } catch (err) {
+        res.json({message: err})
+    }
+})
+
+//DELETE METHOD TO DELETE A TRACKER
+router.delete('/:id', async (req,res) => {
+    try {
+        const project = await Project.remove({_id: req.params.id})
         res.json(project)
     } catch (err) {
         res.json({message: err})
