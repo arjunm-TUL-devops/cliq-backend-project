@@ -40,5 +40,18 @@ router.get('/:id', async (req,res) => {
     }
 })
 
+//PATCH METHOD TO UPDATE THe STATUS OF TRACKER
+router.patch('/:id', async (req,res) => {
+    try {
+        const project = await Project.updateOne(
+            {_id: req.params.id},
+            {$set: {status: req.body.status}}
+            );
+        res.json(project)
+    } catch (err) {
+        res.json({message: err})
+    }
+})
+
 
 module.exports = router;
