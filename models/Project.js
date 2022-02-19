@@ -3,24 +3,21 @@ const mongoose = require('mongoose')
 const ProjectSchema = mongoose.Schema({
     name: {
         type: String,
-        required: true
+        trim: true,
+        required: [true, "Please add a name for the user"]
     },
     work: {
         type: String,
-        required: true
+        required: [true, "Please mention your task"]
     },
-    startDate: {
-        type: Date,
-        default: Date.now
-    },
-    endDate: {
+    createdAt: {
         type: Date,
         default: Date.now
     },
     status: {
         type: String,
-        required: true,
-        default: 'In Process'
+        default: 'In Process',
+        enum: ["In Process", "Completed"]
     }
 })
 
