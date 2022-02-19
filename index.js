@@ -7,13 +7,12 @@ require('dotenv/config')
 
 //Setting up the express server
 const app = express();
-const PORT = 8080;
 
 //Body Parser
 app.use(bodyParser.json())
 
 //Connecting to Database
-mongoose.connect(process.env.DB_CONNECTION,()=>{
+mongoose.connect(`mongodb+srv://${process.env.DB_USER_NAME}:${process.env.DB_PASSWORD}@cluster0.ux7lm.mongodb.net/trackerdb?retryWrites=true&w=majority`,()=>{
     console.log("Connected to Database Successfully!")
 })
 
@@ -25,6 +24,7 @@ app.get('/', (req, res) => {
   res.send('Home Page');
 });
 
+const PORT = process.env.PORT || 8080
 app.listen(PORT, () => {
   console.log(`Server running at: http://localhost:${PORT}/`);
 });
