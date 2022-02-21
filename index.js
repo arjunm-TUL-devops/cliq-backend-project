@@ -21,8 +21,9 @@ app.use('/tracker',trackerRoutes);
 
 //Routes
 app.get('/', (req, res) => {
-  res.send('Home Page');
+  res.sendFile('./pages/index.html');
 });
+
 
 const PORT = process.env.PORT || 8080
 app.listen(PORT, () => {
