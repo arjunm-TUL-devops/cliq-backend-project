@@ -2,6 +2,7 @@ const express = require('express')
 const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
 const trackerRoutes = require('./routes/tracker')
+const path = require('path')
 require('dotenv/config')
 
 
@@ -21,7 +22,7 @@ app.use('/tracker',trackerRoutes);
 
 //Routes
 app.get('/', (req, res) => {
-  res.sendFile('./pages/index.html');
+  res.sendFile(path.join(__dirname+'/pages/index.html'));
 });
 
 
